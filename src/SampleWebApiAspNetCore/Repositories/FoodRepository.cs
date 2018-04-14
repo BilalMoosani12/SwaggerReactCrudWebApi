@@ -53,10 +53,12 @@ namespace SampleWebApiAspNetCore.Repositories
             {
                 _allItems = _allItems
                     .Where(x => x.Calories.ToString().Contains(queryParameters.Query.ToLowerInvariant())
-                    || x.Name.ToLowerInvariant().Contains(queryParameters.Query.ToLowerInvariant()));
+                    || x.Name.ToLowerInvariant().Contains(queryParameters.Query.ToLowerInvariant()))
+                    .OrderBy(i => i.Id);
             }
 
             return _allItems
+                .OrderBy(i => i.Id)
                 .Skip(queryParameters.PageCount * (queryParameters.Page - 1))
                 .Take(queryParameters.PageCount);
         }

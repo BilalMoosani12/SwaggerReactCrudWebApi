@@ -93,7 +93,7 @@ namespace SampleWebApiAspNetCore.Controllers
             }
 
             FoodItem newFoodItem = _foodRepository.GetSingle(toAdd.Id);
-            
+
             return CreatedAtRoute(nameof(GetSingleFood), new { id = newFoodItem.Id },
                 Mapper.Map<FoodItemDto>(newFoodItem));
         }
